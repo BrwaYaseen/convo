@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
+import { ThemeProvider } from "@/components/theme-provider";
+import { dark } from "@clerk/themes";
+import { cn } from "@/lib/utils";
 
 const font = Open_Sans({ subsets: ["latin"] });
 
@@ -16,9 +19,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
+    <ClerkProvider
+      appearance={{
+        baseTheme: dark,
+      }}
+    >
       <html lang="en">
-        <body className={font.className}>{children}</body>
+        <body className={cn(font.className, "bg-white dark:bg-[#152721]")}>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
+        </body>
       </html>
     </ClerkProvider>
   );
