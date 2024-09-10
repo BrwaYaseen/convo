@@ -37,6 +37,8 @@ export const ChatInput = ({ apiUrl, query, name, type }: ChatInputProps) => {
         query,
       });
 
+      console.log("Constructed URL:", url); // Add this to debug the URL
+
       await axios.post(url, values);
     } catch (error) {
       console.log(error);
