@@ -3,6 +3,7 @@ const nextConfig = {
   images: {
     remotePatterns: [{ hostname: "utfs.io" }],
   },
+  productionBrowserSourceMaps: false,
 };
 
 export default nextConfig;
